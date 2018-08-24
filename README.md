@@ -11,3 +11,8 @@ go get -u github.com/Masterminds/glide
 
 glide install --strip-vendor
 ```
+## Run Test
+
+```sh
+go test -cover -v  ./...
+```
