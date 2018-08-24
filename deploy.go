@@ -1,14 +1,14 @@
 package main
 
 import (
-	"fmt"
 	"time"
 )
 
 type deployCmd struct {
-	warPath string
-	at      string
-	layout  string
+	warPath    string
+	at         string
+	layout     string
+	tomcatPath string
 }
 
 func (cmd *deployCmd) run() error {
@@ -28,12 +28,32 @@ func (cmd *deployCmd) run() error {
 
 func deploy() error {
 
-	// 1. Shutdown Tomcat
-	// 2. 刪除 .../tomcat/webapps 目錄下的 payment.war 及 payment 資料夾
-	// 3. 將 .../oldWar/payment.war 複製到 .../tomcat/webapps/
-	// 4. 執行backupDb.bat 備份DB資料
-	// 5. Startup Tomcat
+	// call 1~5
 
-	fmt.Println("!")
+	return nil
+}
+
+func stop() error {
+	// 1. Shutdown Tomcat
+	return nil
+}
+
+func deleteWebapp() error {
+	// 2. 刪除 .../tomcat/webapps 目錄下的 payment.war 及 payment 資料夾
+	return nil
+}
+
+func backupWar() error {
+	// 3. 將 .../oldWar/payment.war 複製到 .../tomcat/webapps/
+	return nil
+}
+
+func backupDb() error {
+	// 4. 執行backupDb.bat 備份DB資料
+	return nil
+}
+
+func start() error {
+	// 5. Startup Tomcat
 	return nil
 }

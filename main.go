@@ -10,7 +10,7 @@ import (
 
 const desc = `
 Automatic deploy war to tomcat at specific timeFilter out template files
-	$ deploy myapp.war --at 8:00"
+	$ deploy myapp.war --at "2018-08-24 15:01" --tomcat "/path/to/tomcat"
 `
 
 func main() {
@@ -39,6 +39,7 @@ func main() {
 	f := cmd.Flags()
 	f.StringVarP(&c.at, "at", "", "", "specific time")
 	f.StringVarP(&c.layout, "layout", "", "2006-01-02 15:04", "specific time layout to parse")
+	f.StringVarP(&c.tomcatPath, "tomcat", "t", "", "specific tomcat path")
 
 	if err := cmd.Execute(); err != nil {
 		os.Exit(1)
