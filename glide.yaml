@@ -1,0 +1,3 @@
+package: github.com/softleader/tomecat-deployer
+import:
+- package: github.com/spf13/cobra
