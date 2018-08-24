@@ -1,7 +1,7 @@
 # Tomcat Deployer
 
 ```sh
-go get -u github/softleader/tomcat-deployer
+go get -u github.com/softleader/tomcat-deployer
 ```
 
 ## Bootstrap
