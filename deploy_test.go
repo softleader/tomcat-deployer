@@ -5,6 +5,7 @@ import (
 	"os"
 	"io/ioutil"
 	"path"
+	"fmt"
 )
 
 func TestStop(t *testing.T) {
@@ -52,7 +53,7 @@ func TestDeleteFile(t *testing.T)  {
 		t.Error(err)
 	}
 
-	//在資料夾中產生payment.war及payment資料夾
+	//在資料夾(路徑+webapps)中產生payment.war及payment資料夾
 	warPath := path.Join(tmp, "payment.war")
 	content := "helloPayment"
 	ioutil.WriteFile(warPath, []byte(content), os.ModePerm)
@@ -64,14 +65,22 @@ func TestDeleteFile(t *testing.T)  {
 	deleteWebapp(tmp)
 
 	//驗證
-	expectedWar := path.Join(tmp, "payment.war")
-	_,warErr := ioutil.ReadFile(expectedWar)
-
-	expectedFile := path.Join(tmp, "payment")
-	_,fileErr := ioutil.ReadFile(expectedFile)
-
-	if warErr == nil || fileErr == nil {
-		t.Errorf("still in there")
+	files, err := ioutil.ReadDir(tmp)
+	if err != nil{
+		fmt.Print("could't find folder")
+	}else{
+		for _, f := range files {
+			if f.Name() == "payment.war"{
+				t.Error("war still in there")
+			}else{
+				fmt.Print("war file deleted!")
+			}
+			if f.Name() == "payment"{
+				t.Error("folder still in there")
+			}else{
+				fmt.Print("folder file deleted!")
+			}
+		}
 	}
 
 	//完成後刪除資料夾

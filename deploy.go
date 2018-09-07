@@ -46,24 +46,22 @@ func stop() error {
 }
 
 func deleteWebapp(tomcatPath string) error {
-	// 2. 刪除 .../tomcat/webapps 目錄下的 payment.war 及 payment 資料夾
+	// 2. 刪除 .../tomcat/webapps(此路徑tomcatPath必須是刪除目錄) 目錄下的 payment.war 及 payment 資料夾
 
 	//step1 進入變數tomcatPath下面的webapps目錄裡
 	//step2 找到payment.war及payment資料夾
 	//step3 刪除他們
 
-	s := tomcatPath + "/webapps"
-
-	files, err := ioutil.ReadDir(s)
+	files, err := ioutil.ReadDir(tomcatPath)
 	if err != nil{
 		fmt.Print("could't find folder")
 	}else{
 		for _, f := range files {
 			if f.Name() == "payment.war"{
-				os.Remove(f.Name()) // 刪除檔案 (可多層)
+				os.Remove(tomcatPath+"\\payment.war") // 刪除檔案 (可多層)
 			}
 			if f.Name() == "payment"{
-				os.RemoveAll(f.Name()) // 刪除資料料夾 (可多層)
+				os.RemoveAll(tomcatPath+"\\payment") // 刪除資料料夾 (可多層)
 			}
 		}
 	}
